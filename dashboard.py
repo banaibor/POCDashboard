@@ -7,6 +7,7 @@ from shapely.geometry import MultiPoint
 import geopy.distance as geodesic
 import plotly.graph_objects as go
 
+
 # Title of the App
 st.title("Side-by-Side Comparison: Old vs New Clusters")
 
