@@ -31,25 +31,6 @@ if old_clusters_file and new_clusters_file:
         old_filtered_df = old_df[old_df['District'] == selected_district]
         new_filtered_df = new_df[new_df['District'] == selected_district]
 
-        # --- Global Table with Totals Across All Districts ---
-        st.subheader("Global Comparison: All Districts Summary")
-        all_districts_old_summary = old_df.groupby('District').agg({
-            'Cluster Name': 'nunique',  # Number of unique clusters
-            'Tot Population': 'sum',  # Total population
-            'Distance': 'mean',  # Average distance
-            'Cost': 'sum'  # Total cost
-        }).reset_index()
-
-        all_districts_new_summary = new_df.groupby('District').agg({
-            'Cluster Name': 'nunique',
-            'Tot Population': 'sum',
-            'Distance': 'mean',
-            'Cost': 'sum'
-        }).reset_index()
-
-        combined_summary = pd.merge(all_districts_old_summary, all_districts_new_summary, on='District', suffixes=('_Old', '_New'))
-        st.dataframe(combined_summary)
-
         # --- Dynamic Table for Selected District ---
         st.subheader(f"Analysis for {selected_district}")
 
